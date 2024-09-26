@@ -1,8 +1,8 @@
 var warped_image = document.getElementById("warped_image"),
   warp_canvas = document.createElement("canvas"),
   warp_context = warp_canvas.getContext("2d");
-  warp_context.imageSmoothingEnabled = true;
-  warp_context.imageSmoothingQuality = 'high'; // Pode ser 'low', 'medium', ou 'high'
+warp_context.imageSmoothingEnabled = true;
+warp_context.imageSmoothingQuality = "high"; // Pode ser 'low', 'medium', ou 'high'
 // inputs
 var warp_size_input = document.getElementById("warp_size");
 
@@ -116,7 +116,7 @@ function warpVertically(image_to_warp, invert_curve) {
         end_point,
         t / image_width
       ),
-      y = xyAtT.y//parseInt(xyAtT.y);
+      y = xyAtT.y; //parseInt(xyAtT.y);
 
     offset_y_points.push(y);
   }
@@ -145,10 +145,12 @@ function warpImage() {
   var image_to_warp = new Image();
 
   image_to_warp.onload = function () {
-    var warp_orientation = document.querySelector(
-        'input[name="warp_orientation"]:checked'
-      ).value,
-      invert_curve = document.getElementById("invert_curve").checked;
+    // var warp_orientation = document.querySelector(
+    //     'input[name="warp_orientation"]:checked'
+    //   ).value,
+    let invert_curve = document.getElementById("invert_curve").checked;
+    warp_orientation = "vertical";
+
     if (warp_orientation === "horizontal") {
       warpHorizontally(image_to_warp, invert_curve);
     } else {
@@ -157,7 +159,7 @@ function warpImage() {
     warped_image.src = warp_canvas.toDataURL();
   };
 
-  image_to_warp.src = "1.png";
+  image_to_warp.src = "test.png";
 }
 warpImage();
 
